@@ -31,7 +31,7 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepublish": "npm run build && cp npm version patch "
+    "prepublish": "npm run build && npm version patch "
   },
   "devDependencies": {
     "@trandx/sortable": "^1.0.1",
