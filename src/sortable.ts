@@ -1,6 +1,7 @@
 
 // >>> Types and interfaces <<<
 type SortByType<T> =
+  |boolean
   | string
   | ISortByFunction<T>
   | (string | ISortByFunction<T>)[];
@@ -40,7 +41,7 @@ type SortByType<T> =
     sortBy: (string | ISortByFunction<T>)[];
   }
   interface ISimpleSort<T> extends Omit< IDeepSort<T>, "sortBy"> {
-    sortBy?: (string | ISortByFunction<T>);
+    sortBy?: (string | boolean | ISortByFunction<T>);
   }
 
 // >>> Logics <<<
@@ -120,8 +121,19 @@ const deepSort = function <T>({ nextVal, prevVal, order, sortBy }: IDeepSort<T>)
 
 const simpleSort = function<T>({ nextVal, prevVal, order, sortBy }: ISimpleSort<T>){
 
-  if (sortBy === undefined) {
-    
+  if (sortBy === undefined || typeof sortBy == "boolean" ) {
+
+    if (nextVal instanceof Array) {
+      nextVal = nextVal[0]
+    }else if(nextVal instanceof Object){
+      nextVal = nextVal[Object.keys(nextVal)[0]]
+    }
+    if (nextVal instanceof Array) {
+      prevVal = prevVal[0]
+    }else if(prevVal instanceof Object){
+      prevVal = prevVal[Object.keys(prevVal)[0]]
+    }
+
     return comparer({ nextVal, prevVal, order });
 
   }
@@ -157,7 +169,7 @@ const sortWithoutObject = function <T = object>({
   //sortBy is optionnal
   return function (prevVal: any, nextVal: any) {
     // Sort by multiple properties
-     if(typeof sortBy == "object" && !(sortBy instanceof Array)){
+    if(typeof sortBy == "object" && !(sortBy instanceof Array)){
 
       let comparerState = 0
 
@@ -193,13 +205,20 @@ const sortWithoutObject = function <T = object>({
 };
 
 const runSort = function <T>({ order, sortBy }: ISortParam<T>) {
-   
-    return globalData.toSorted(
+  if(typeof globalData == null || typeof globalData == "number" || typeof globalData == "string" ) return globalData;
+
+    return globalData.sort(
       sortWithoutObject({
         order,
         sortBy,
       })
     );
+    // return globalData.toSorted(
+    //   sortWithoutObject({
+    //     order,
+    //     sortBy,
+    //   })
+    // );
   
 };
 
@@ -246,7 +265,6 @@ interface ISort<T> {
   
   export const sort = function <T>(data: T | T[]): ISort<T> {
     globalData = data;
-  
     return {
       asc(sortBy?: SortByType<T>): T[] {
         return runSort({ order: 1, sortBy });
