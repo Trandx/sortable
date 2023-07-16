@@ -1,14 +1,14 @@
 # sortable
 ## Author
-  https://avatars.githubusercontent.com/u/42522718?v=4
+  (https://avatars.githubusercontent.com/u/42522718?v=4)
 ## Inspired from Fast-sort
-[![Start](https://img.shields.io/github/stars/snovakovic/sortable?style=flat-square)](https://github.com/snovakovic/sortable/stargazers)
-[![Total Downloads](https://img.shields.io/npm/dt/sortable.svg)](https://www.npmjs.com/package/sortable)
-[![Known Vulnerabilities](https://snyk.io/test/github/snovakovic/sortable/badge.svg)](https://snyk.io/test/github/snovakovic/sortable)
+[![Start](https://img.shields.io/github/stars/Trandx/sortable?style=flat-square)](https://github.com/snovakovic/Trandx/sortable)
+[![Total Downloads](https://img.shields.io/github/downloads/trandx/sortable/total)](https://www.npmjs.com/package/@trandx/sortable)
+[![Known Vulnerabilities](https://snyk.io/test/github/Trandx/sortable/badge.svg)](https://snyk.io/test/github/Trandx/sortable/badge)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
-[![NPM Package](https://nodei.co/npm/sortable.png)](https://www.npmjs.com/package/sortable)
+[![NPM Package](https://nodei.co/npm/@trandx/sortable.png)](https://www.npmjs.com/package/@trandx/sortable)
 
 Sortable is a lightweight (311 bytes gzip), zero-dependency sorting library with TypeScript support.
 Its easy-to-use and flexible syntax, combined with [incredible speed](#benchmark) put than Fast-sort library. It's a top choice for developers who seek efficient, reliable, and customizable sorting solutions.
