@@ -1,8 +1,6 @@
-# sortable
-## Author
-  (https://avatars.githubusercontent.com/u/42522718?v=4)
+# Sortable
 ## Inspired from Fast-sort
-[![Start](https://img.shields.io/github/stars/Trandx/sortable?style=flat-square)](https://github.com/snovakovic/Trandx/sortable)
+[![Start](https://img.shields.io/github/stars/Trandx/sortable?style=flat-square)](https://github.com/Trandx/sortable)
 [![Total Downloads](https://img.shields.io/github/downloads/trandx/sortable/total)](https://www.npmjs.com/package/@trandx/sortable)
 [![Known Vulnerabilities](https://snyk.io/test/github/Trandx/sortable/badge.svg)](https://snyk.io/test/github/Trandx/sortable/badge)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
@@ -11,7 +9,7 @@
 [![NPM Package](https://nodei.co/npm/@trandx/sortable.png)](https://www.npmjs.com/package/@trandx/sortable)
 
 Sortable is a lightweight (311 bytes gzip), zero-dependency sorting library with TypeScript support.
-Its easy-to-use and flexible syntax, combined with [incredible speed](#benchmark) put than Fast-sort library. It's a top choice for developers who seek efficient, reliable, and customizable sorting solutions.
+Its easy-to-use and flexible syntax, combined with incredible speed put than Fast-sort library. It's a top choice for developers who seek efficient, reliable, and customizable sorting solutions.
 
 ## Quick examples
 
@@ -57,7 +55,7 @@ Fore more examples check [unit tests](https://github.com/Trandx/sortable/blob/pr
 
 
 
-NOTE: This library sort automatically date, string, number and booleen datas. it help you to give more sorting precision if you have same field value. for example if you've same username, the second precision that you give (```created_ad```) is for have sorting differentiation.
+NOTE: This library sort automatically date, string, number and booleen datas. it help you to give more sorting precision if you have same field value. for example if you've same username, the second precision that you give (```created_at```) is for have sorting differentiation.
 
 
 ## More examples
@@ -76,14 +74,21 @@ NOTE: This library sort automatically date, string, number and booleen datas. it
 ```
 
 #### Running
+Install via package manager
+
+``npm i @trandx/sortable``
+  or
+``pnpm i @trandx/sortable``
 
 To run benchmark on your PC follow steps from below
 
-1) git clone https://github.com/Trandx/sortable.git 
+1) git clone ``https://github.com/Trandx/sortable.git``
 2) cd ``into the directory ``
 3) pnpm install
 4) pnpm start
 
 In case you notice any irregularities in benchmark or you want to add sort library to benchmark score
 please open issue [here](https://github.com/Trandx/sortable)
+## Author
 
+  [![alt text](https://avatars.githubusercontent.com/u/42522718?v=4)](https://github.com/Trandx/sortable)
