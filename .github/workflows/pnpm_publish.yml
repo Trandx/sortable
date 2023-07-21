@@ -1,0 +1,34 @@
+name: pnpm Example Workflow
+on:
+  push:
+    branches: [production]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Install dependencies and build
+      run: pnpm run build
+      
+    - name: test
+      run: pnpm test
+
+    - name: Publish package on NPM
+      run: npm publish
+
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
