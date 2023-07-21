@@ -4,7 +4,7 @@ on:
     branches: [production]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18]
@@ -18,17 +18,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+        registry-url: https://registry.npmjs.com
+        
     - name: Install dependencies
       run: pnpm install
       
     - name: Install dependencies and build
       run: pnpm run build
       
-    #- name: test
-     # run: pnpm test
+    - name: test
+      run: pnpm test
 
     - name: Publish package on NPM
-      run: npm publish
+      run: npm publish --access public
 
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
