@@ -1,0 +1,23 @@
+name: Checks
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          node-version: [18]
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v3
+
+    - name: "Use pnpm v8"
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    
+    - name: 'Install dependencies'
+      run: pnpm install && pnpm add @edge-runtime/vm --save
+    
