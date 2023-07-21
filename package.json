@@ -18,7 +18,8 @@
   },
   "publishConfig": {
     "directory": "dist",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "registry": "https://www.npmjs.com/package/@trandx/sortable"
   },
   "repository": {
     "type": "git",
