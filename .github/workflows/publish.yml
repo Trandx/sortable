@@ -1,14 +1,12 @@
 name: publish package on npm
 on:
-  push:
-    branches: [production]
   pull_request:
     types: [closed]
     branches:
       - production
 jobs:
   build:
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
