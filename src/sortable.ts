@@ -1,6 +1,6 @@
 
 // >>> Types and interfaces <<<
-type SortByType<T> =
+export type SortByType<T> =
   |boolean
   | string
   | ISortByFunction<T>
@@ -10,7 +10,7 @@ type SortByType<T> =
     (prop: T): any;
   }
 
-  type SortByObjectType<T> =
+  export type SortByObjectType<T> =
   | SortByAscSorterType<T>
   | SortByDescSorterType<T>
   //| (SortByAscSorterType<T> | SortByDescSorterType<T>)[];
@@ -107,11 +107,11 @@ const deepSort = function <T>({ nextVal, prevVal, order, sortBy }: IDeepSort<T>)
   sortBy = [...new Set(sortBy)]; // to remove duplicated values
 
   sortBy.every((_sortBy) => {
-    console.log({ nextVal, prevVal, order, sortBy:_sortBy });
+    //console.log({ nextVal, prevVal, order, sortBy:_sortBy });
 
     comparerState = simpleSort({ nextVal, prevVal, order, sortBy:_sortBy }) ;
 
-    console.log("after: "+comparerState);
+    //console.log("after: "+comparerState);
     if (comparerState !== 0)return false;
     return true
   });
@@ -179,7 +179,7 @@ const sortWithoutObject = function <T = object>({
         const order = key === "asc"?1:key === "desc"?-1: null;
 
         if(order == null) throw Error("Key of function 'by' muwt be 'asc|desc'")
-        console.log(typeof _sortBy, (_sortBy instanceof Object));
+        //console.log(typeof _sortBy, (_sortBy instanceof Object));
         if(Array.isArray(_sortBy)){
           comparerState = deepSort({ nextVal, prevVal, order, sortBy: _sortBy });
 
@@ -187,7 +187,7 @@ const sortWithoutObject = function <T = object>({
 
         }else if(typeof sortBy == "object" && !(sortBy instanceof Array)){
           comparerState = simpleSort({ nextVal, prevVal, order, sortBy:_sortBy });
-          console.log({ nextVal, prevVal, order, sortBy,comparerState });
+          //console.log({ nextVal, prevVal, order, sortBy,comparerState });
           if (comparerState !== 0) return false;
         }
 
