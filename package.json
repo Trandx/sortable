@@ -19,12 +19,11 @@
   "publishConfig": {
     "directory": "dist",
     "linkDirectory": true,
-    "registry": "https://www.npmjs.com/package/@trandx/sortable"
+    "registry": "https://registry.npmjs.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Trandx/sortable.git",
-    "directory": "packages/@trandx/sortable"
+    "url": "git+https://github.com/Trandx/sortable.git"
   },
   "homepage": "https://github.com/Trandx/sortable/blob/production/README.md",
   "scripts": {
