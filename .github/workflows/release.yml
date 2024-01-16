@@ -1,0 +1,48 @@
+name: release
+on:
+    release:
+        types: [created]
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+              node-version: [18]
+        steps:
+        - name: "Checkout"
+          uses: actions/checkout@v3
+          # Checkout the exact commit tagged on the release.
+          with:
+            ref: ${{ github.event.release.target_commitish }}
+
+        - name: 'Validate and extract release information'
+          id: release
+          uses: manovotny/github-releases-for-automated-package-publishing-action@v2.0.1
+
+        - name: Set node version
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+            cache: 'pnpm'
+            registry-url: https://registry.npmjs.com
+        
+        - name: Install dependencies
+          run: pnpm install && pnpm add @edge-runtime/vm --save
+            
+        - name: test
+          run: pnpm test
+
+        - name: Install dependencies and build
+          run: pnpm run build
+
+        - name: Publish version
+          if: steps.release.outputs.tag == ''
+          run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        - name: Publish tagged version
+          if: steps.release.outputs.tag != ''
+          run: npm publish --tag ${{ steps.release.outputs.tag }} --access public
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
