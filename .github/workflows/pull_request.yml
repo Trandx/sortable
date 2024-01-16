@@ -1,12 +1,16 @@
 name: publish package on npm
 on:
+  push:
+    branches:
+      - production
+
   pull_request:
-    types: [closed]
+    # types: [closed]
     branches:
       - production
 jobs:
-  build:
-    if: github.event.pull_request.merged == true
+  test:
+    #if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,16 +28,16 @@ jobs:
         registry-url: https://registry.npmjs.com
         
     - name: Install dependencies
-      run: pnpm install && pnpm add @edge-runtime/vm --save
-      
-    - name: Install dependencies and build
-      run: pnpm run build
+      run: pnpm i --frozen-lockfile && pnpm add @edge-runtime/vm --save
       
     - name: test
       run: pnpm test
+      
+    # - name: Install dependencies and build
+    #   run: pnpm run build
 
-    - name: Publish package on NPM
-      run: npm publish --access public
+    # - name: Publish package on NPM
+    #   run: npm publish --access public
 
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
